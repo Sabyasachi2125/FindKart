@@ -148,113 +148,213 @@
             border: 1px solid #f5c6cb;
         }
 
-        /* Products Table */
-        .products-wrapper {
+        /* Products Grid Layout */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+            padding: 0 10px;
+        }
+
+        .product-card {
             background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(45, 77, 104, 0.1);
-            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(45, 77, 104, 0.1);
+            border: 1px solid #e2e8f0;
             overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        table {
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(45, 77, 104, 0.15);
+        }
+
+        .product-image-container {
+            position: relative;
             width: 100%;
-            border-collapse: collapse;
+            height: 220px;
+            overflow: hidden;
+            background: #f8fafc;
         }
 
-        th, td {
-            padding: 16px 12px;
-            text-align: center;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        th {
-            background: linear-gradient(135deg, #2d4d68, #34567a);
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        td {
-            color: #1f2937;
-            font-weight: 500;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        /* Product Image */
         .product-image {
-            width: 60px;
-            height: 60px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 6px;
-            border: 2px solid #e5e7eb;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
 
         .product-image-placeholder {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 6px;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6b7280;
-            font-size: 24px;
-            border: 2px solid #e5e7eb;
+            background: linear-gradient(45deg, #ff6b35, #ffa500);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
         }
 
-        /* Form Elements */
-        input[type="number"] {
+        .favorite-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .favorite-btn:hover {
+            background: #ff6b35;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-brand {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            color: #2d4d68;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-description {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .current-price {
+            color: #2d4d68;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .stock-info {
+            color: #059669;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .stock-info.low-stock {
+            color: #dc2626;
+        }
+
+        .quantity-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .quantity-label {
+            color: #2d4d68;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .quantity-input {
             width: 60px;
             padding: 6px 8px;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
             text-align: center;
-            font-size: 14px;
+            font-weight: 500;
         }
 
-        input[type="number"]:focus {
+        .quantity-input:focus {
             outline: none;
             border-color: #ff6b35;
-            box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
         }
 
-        .btn {
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #ff6b35, #ff8856);
-            color: #ffffff;
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 14px;
-            transition: all 0.2s ease;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
-        .btn:hover {
-            background: linear-gradient(135deg, #ff5722, #ff7043);
-            transform: translateY(-1px);
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #e55a2b 0%, #e67832 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
-                flex-wrap: wrap;
-                gap: 15px;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 15px;
             }
-            
-            .navbar a {
-                font-size: 13px;
-                padding: 6px 10px;
+
+            .logo-section {
+                order: 1;
+            }
+
+            .nav-links {
+                order: 2;
+                gap: 1rem;
             }
             
             .container {
@@ -262,27 +362,63 @@
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
             
-            th, td {
-                padding: 12px 8px;
-                font-size: 13px;
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 16px;
+            }
+            
+            .product-info {
+                padding: 16px;
             }
         }
 
         @media (max-width: 480px) {
-            th, td {
-                padding: 10px 5px;
-                font-size: 12px;
+            .products-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 5px;
             }
             
-            .btn {
-                padding: 6px 12px;
-                font-size: 12px;
+            .product-image-container {
+                height: 200px;
+            }
+            
+            .product-info {
+                padding: 12px;
+            }
+            
+            .add-to-cart-btn {
+                padding: 10px 16px;
+                font-size: 13px;
             }
         }
     </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event delegation for favorite buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.favorite-btn')) {
+                    const btn = e.target.closest('.favorite-btn');
+                    const productId = btn.getAttribute('data-product-id');
+                    const heart = btn.querySelector('span');
+                    
+                    if (heart.textContent === '♡') {
+                        heart.textContent = '♥';
+                        heart.style.color = '#ff6b35';
+                        console.log('Added product ' + productId + ' to favorites');
+                    } else {
+                        heart.textContent = '♡';
+                        heart.style.color = '#cbd5e1';
+                        console.log('Removed product ' + productId + ' from favorites');
+                    }
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <%
@@ -335,17 +471,7 @@
             <div class="message <%=cartMessageType%>"><%=cartMessage%></div>
         <% } %>
 
-        <div class="products-wrapper">
-            <table>
-                <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Description</th>
-                    <th>Price (₹)</th>
-                    <th>Stock</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                </tr>
+        <div class="products-container">
         <%
             Connection conn = null;
             Statement st = null;
@@ -361,41 +487,77 @@
                     double price = rs.getDouble("price");
                     int stock = rs.getInt("stock");
                     String imageUrl = rs.getString("image_url");
+                    
+                    // Determine brand/category for display
+                    String brand = "FindKart";
+                    if (name.toLowerCase().contains("laptop")) brand = "Electronics";
+                    else if (name.toLowerCase().contains("smartphone")) brand = "Mobile";
+                    else if (name.toLowerCase().contains("headphone")) brand = "Audio";
+                    else if (name.toLowerCase().contains("shirt")) brand = "Fashion";
+                    else if (name.toLowerCase().contains("jeans")) brand = "Apparel";
+                    else if (name.toLowerCase().contains("shoe")) brand = "Footwear";
+                    else if (name.toLowerCase().contains("mug")) brand = "Kitchen";
+                    else if (name.toLowerCase().contains("book")) brand = "Books";
+                    else if (name.toLowerCase().contains("bag")) brand = "Accessories";
         %>
-                    <tr>
-                        <td>
-                            <%
-                                if (imageUrl != null && !imageUrl.trim().isEmpty()) {
-                                    out.println("<img src='images/" + imageUrl + "' alt='" + name + "' class='product-image' onerror=\"this.style.display='none'; this.nextElementSibling.style.display='flex';\">" +
-                                               "<div class='product-image-placeholder' style='display:none; background: linear-gradient(45deg, #ff6b35, #ffa500); width: 60px; height: 60px; border-radius: 6px; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;'>No Image</div>");
-                                } else {
-                                    out.println("<div class='product-image-placeholder' style='background: linear-gradient(45deg, #ff6b35, #ffa500); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; width: 60px; height: 60px; border-radius: 6px;'>No Image</div>");
-                                }
-                            %>
-                        </td>
-                        <td><%=name%></td>
-                        <td><%=desc%></td>
-                        <td>₹<%=price%></td>
-                        <td><%=stock%></td>
-                        <form action="addToCart.jsp" method="get">
-                        <td><input type="number" name="quantity" value="1" min="1" max="<%=stock%>" required></td>
-                        <td>
-                            <input type="hidden" name="productId" value="<%=id%>">
-                            <button type="submit" class="btn">Add to Cart</button>
-                        </td>
-                        </form>
-                    </tr>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <%
+                        if (imageUrl != null && !imageUrl.trim().isEmpty()) {
+                            out.println("<img src='images/" + imageUrl + "' alt='" + name + "' class='product-image' onerror=\"this.style.display='none'; this.nextElementSibling.style.display='flex';\">" +
+                                       "<div class='product-image-placeholder' style='display:none;'>No Image</div>");
+                        } else {
+                            out.println("<div class='product-image-placeholder'>No Image</div>");
+                        }
+                    %>
+                    <button class="favorite-btn" data-product-id="<%=id%>">
+                        <span style="font-size: 18px; color: #cbd5e1;">♡</span>
+                    </button>
+                </div>
+                
+                <div class="product-info">
+                    <div class="product-brand"><%=brand%></div>
+                    <h3 class="product-name"><%=name%></h3>
+                    <p class="product-description"><%=desc%></p>
+                    
+                    <div class="price-section">
+                        <span class="current-price">₹<%=String.format("%.0f", price)%></span>
+                    </div>
+                    
+                    <%
+                        if (stock > 10) {
+                            out.println("<div class='stock-info'>In Stock (" + stock + " available)</div>");
+                        } else if (stock > 0) {
+                            out.println("<div class='stock-info low-stock'>Low Stock (" + stock + " left)</div>");
+                        } else {
+                            out.println("<div class='stock-info low-stock'>Out of Stock</div>");
+                        }
+                    %>
+                    
+                    <form action="addToCart.jsp" method="get" style="margin: 0;">
+                        <div class="quantity-section">
+                            <span class="quantity-label">Qty:</span>
+                            <input type="number" name="quantity" value="1" min="1" max="<%=stock%>" 
+                                   class="quantity-input" <%=stock == 0 ? "disabled" : ""%> required>
+                        </div>
+                        
+                        <input type="hidden" name="productId" value="<%=id%>">
+                        <button type="submit" class="add-to-cart-btn" <%=stock == 0 ? "disabled" : ""%>>
+                            <%=stock == 0 ? "Out of Stock" : "Add to Cart"%>
+                        </button>
+                    </form>
+                </div>
+            </div>
         <%
                 }
             } catch(Exception e){
-                out.println("<tr><td colspan='7' style='color:#dc2626;'>Error: "+e.getMessage()+"</td></tr>");
+                out.println("<div style='grid-column: 1/-1; text-align: center; color: #dc2626; padding: 40px;'>Error: "+e.getMessage()+"</div>");
             } finally {
                 try { if (rs != null) rs.close(); } catch (Exception ex) {}
                 try { if (st != null) st.close(); } catch (Exception ex) {}
                 try { if (conn != null) conn.close(); } catch (Exception ex) {}
             }
         %>
-            </table>
         </div>
     </div>
 </body>
