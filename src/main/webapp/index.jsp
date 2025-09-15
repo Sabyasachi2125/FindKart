@@ -18,7 +18,7 @@
     <title>E-Commerce Home</title>
 <style>
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Reset */
 * {
@@ -27,221 +27,160 @@
     box-sizing: border-box;
 }
 
-/* Modern Dark Theme */
+/* FindKart Theme - Based on Logo Colors */
 body {
-    font-family: 'Inter', 'Poppins', sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    overflow-x: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Glass Navigation Bar */
+/* Navigation Bar - Logo Colors */
 .navbar {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    display: flex;
-    gap: 20px;
-    padding: 12px 30px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #2d4d68 0%, #34567a 100%);
+    padding: 12px 0;
+    box-shadow: 0 2px 8px rgba(45, 77, 104, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.navbar:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #ff6b35, #ff8856);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.brand-name {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.brand-name .find {
+    color: #ffffff;
+}
+
+.brand-name .kart {
+    color: #ff6b35;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .navbar a {
     color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
     font-size: 14px;
-    padding: 8px 16px;
-    border-radius: 25px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.navbar a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-}
-
-.navbar a:hover::before {
-    left: 100%;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .navbar a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    color: #f0f0f0;
+    background-color: rgba(255, 107, 53, 0.2);
+    color: #ff6b35;
 }
 
-/* Welcome Section */
-.welcome-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 100px 20px 20px;
+/* Main Content */
+.main-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 .welcome-card {
-    max-width: 600px;
-    padding: 60px 40px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 40px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    animation: float 6s ease-in-out infinite;
-}
-
-.welcome-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
-    animation: rotate 8s linear infinite;
-}
-
-.welcome-card > * {
-    position: relative;
-    z-index: 1;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e5e7eb;
 }
 
 .welcome-card h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #f093fb);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 24px;
-    animation: gradientShift 4s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
 }
 
 .welcome-card p {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    margin-bottom: 40px;
-    font-weight: 400;
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 16px 40px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ff6b35, #ff8856);
     color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 4px;
     text-decoration: none;
-    border-radius: 50px;
     font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s;
-}
-
-.cta-button:hover::before {
-    left: 100%;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
 
 .cta-button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #ff5722, #ff7043);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .navbar {
+    .nav-container {
         flex-wrap: wrap;
-        gap: 10px;
-        padding: 10px 20px;
-        top: 10px;
+        gap: 15px;
     }
     
     .navbar a {
         font-size: 13px;
-        padding: 6px 12px;
+        padding: 6px 10px;
     }
     
     .welcome-card {
-        margin: 80px 10px 20px;
-        padding: 40px 20px;
+        padding: 30px 20px;
     }
     
-    .welcome-card h1 {
-        font-size: 2.5rem;
-    }
-    
-    .welcome-card p {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
     .welcome-card h1 {
         font-size: 2rem;
     }
     
     .welcome-card p {
-        font-size: 1rem;
-    }
-    
-    .cta-button {
-        padding: 12px 30px;
         font-size: 1rem;
     }
 }
@@ -252,17 +191,27 @@ body {
 </head>
 <body>
     <div class="navbar">
-        <a href="index.jsp">🏠 Home</a>
-        <a href="products.jsp">🛍️ Products</a>
-        <a href="cart.jsp">🛒 Cart</a>
-        <a href="myOrders.jsp">📦 My Orders</a>
-        <a href="logout.jsp">🚪 Logout</a>
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">🛒</div>
+                <a href="index.jsp" class="brand-name">
+                    <span class="find">Find</span><span class="kart">Kart</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.jsp">Home</a>
+                <a href="products.jsp">Products</a>
+                <a href="cart.jsp">Cart</a>
+                <a href="myOrders.jsp">My Orders</a>
+                <a href="logout.jsp">Logout</a>
+            </div>
+        </div>
     </div>
 
-    <div class="welcome-section">
+    <div class="main-section">
         <div class="welcome-card">
-            <h1>Welcome to FindKart ✨</h1>
-            <p>Discover amazing products, enjoy seamless shopping, and experience the future of e-commerce!</p>
+            <h1>Welcome to FindKart</h1>
+            <p>Shop. Locate. Discover. Your ultimate destination for quality products and seamless shopping experience!</p>
             <a href="products.jsp" class="cta-button">Start Shopping</a>
         </div>
     </div>

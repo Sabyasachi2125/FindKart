@@ -7,7 +7,7 @@
     <title>Products - FindKart</title>
       <style>
         /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         /* Reset */
         * { 
@@ -17,135 +17,144 @@
         }
 
         body {
-            font-family: 'Inter', 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #ffffff;
-            padding-top: 80px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
         }
 
-        /* Fixed Navigation Bar */
+        /* Navigation Bar - FindKart Theme */
         .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
+            background: linear-gradient(135deg, #2d4d68 0%, #34567a 100%);
+            padding: 12px 0;
+            box-shadow: 0 2px 8px rgba(45, 77, 104, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            gap: 20px;
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #ff6b35, #ff8856);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .brand-name {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .brand-name .find {
+            color: #ffffff;
+        }
+
+        .brand-name .kart {
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
         .navbar a {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
             font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 25px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
             position: relative;
         }
 
         .navbar a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .cart-link {
-            position: relative;
+            background-color: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
         }
 
         .cart-counter {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #ff6b35, #ff8856);
             color: white;
             border-radius: 50%;
-            padding: 4px 8px;
+            padding: 2px 6px;
             font-size: 11px;
             font-weight: 600;
-            min-width: 20px;
+            min-width: 18px;
             text-align: center;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         /* Page Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         h2 {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5em;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #2d4d68;
+            margin-bottom: 30px;
         }
 
         /* Message Styling */
         .message {
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
-            padding: 16px 20px;
-            border-radius: 15px;
-            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 14px;
             text-align: center;
-            animation: slideDown 0.5s ease-out;
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .message.success {
-            background: rgba(78, 205, 196, 0.2);
-            color: #4ecdc4;
-            border: 1px solid rgba(78, 205, 196, 0.3);
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
         }
 
         .message.error {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-            border: 1px solid rgba(255, 107, 107, 0.3);
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         /* Products Table */
         .products-wrapper {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(45, 77, 104, 0.1);
+            border: 1px solid #e5e7eb;
             overflow: hidden;
-            margin: 20px auto;
-            max-width: 1000px;
         }
 
         table {
@@ -154,133 +163,123 @@
         }
 
         th, td {
-            padding: 18px 15px;
+            padding: 16px 12px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #e5e7eb;
         }
 
         th {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #2d4d68, #34567a);
             color: #ffffff;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         td {
-            color: rgba(255, 255, 255, 0.9);
+            color: #1f2937;
             font-weight: 500;
         }
 
+        tr:last-child td {
+            border-bottom: none;
+        }
+
         tr:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background-color: #f8f9fa;
+        }
+
+        /* Product Image */
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid #e5e7eb;
+        }
+
+        .product-image-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 24px;
+            border: 2px solid #e5e7eb;
         }
 
         /* Form Elements */
         input[type="number"] {
             width: 60px;
-            padding: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         input[type="number"]:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        input[type="number"]::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
         }
 
         .btn {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #ff6b35, #ff8856);
             color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
         }
 
         .btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            transform: translateY(-1px);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .navbar {
+            .nav-container {
                 flex-wrap: wrap;
-                gap: 10px;
-                padding: 10px 20px;
-                top: 10px;
+                gap: 15px;
             }
             
             .navbar a {
                 font-size: 13px;
-                padding: 6px 12px;
+                padding: 6px 10px;
             }
             
-            body {
-                padding-top: 100px;
+            .container {
+                padding: 20px 10px;
             }
             
             h2 {
-                font-size: 2em;
-            }
-            
-            .products-wrapper {
-                margin: 10px;
-                border-radius: 15px;
+                font-size: 1.5rem;
             }
             
             th, td {
                 padding: 12px 8px;
-                font-size: 0.9em;
+                font-size: 13px;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
             th, td {
                 padding: 10px 5px;
-                font-size: 0.8em;
+                font-size: 12px;
             }
             
             .btn {
-                padding: 8px 12px;
-                font-size: 0.8em;
+                padding: 6px 12px;
+                font-size: 12px;
             }
         }
     </style>
@@ -308,19 +307,29 @@
     %>
     
     <div class="navbar">
-        <a href="index.jsp">🏠 Home</a>
-        <a href="products.jsp">🛍️ Products</a>
-        <a href="cart.jsp" class="cart-link">🛒 Cart
-            <% if(cartSize > 0) { %>
-                <span class="cart-counter"><%=cartSize%></span>
-            <% } %>
-        </a>
-        <a href="myOrders.jsp">📦 My Orders</a>
-        <a href="logout.jsp">🚪 Logout</a>
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">🛒</div>
+                <a href="index.jsp" class="brand-name">
+                    <span class="find">Find</span><span class="kart">Kart</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.jsp">Home</a>
+                <a href="products.jsp">Products</a>
+                <a href="cart.jsp" class="cart-link">Cart
+                    <% if(cartSize > 0) { %>
+                        <span class="cart-counter"><%=cartSize%></span>
+                    <% } %>
+                </a>
+                <a href="myOrders.jsp">My Orders</a>
+                <a href="logout.jsp">Logout</a>
+            </div>
+        </div>
     </div>
 
     <div class="container">
-        <h2>🛍️ Our Products</h2>
+        <h2>Our Products</h2>
         
         <% if(cartMessage != null) { %>
             <div class="message <%=cartMessageType%>"><%=cartMessage%></div>
@@ -329,6 +338,7 @@
         <div class="products-wrapper">
             <table>
                 <tr>
+                    <th>Image</th>
                     <th>Product Name</th>
                     <th>Description</th>
                     <th>Price (₹)</th>
@@ -343,15 +353,26 @@
             try {
                 conn = DBConnection.getConnection();
                 st = conn.createStatement();
-                rs = st.executeQuery("SELECT * FROM products");
+                rs = st.executeQuery("SELECT id, name, description, price, stock, image_url FROM products");
                 while(rs.next()){
                     int id = rs.getInt("id");
                     String name = rs.getString("name");
                     String desc = rs.getString("description");
                     double price = rs.getDouble("price");
                     int stock = rs.getInt("stock");
+                    String imageUrl = rs.getString("image_url");
         %>
                     <tr>
+                        <td>
+                            <%
+                                if (imageUrl != null && !imageUrl.trim().isEmpty()) {
+                                    out.println("<img src='images/" + imageUrl + "' alt='" + name + "' class='product-image' onerror=\"this.style.display='none'; this.nextElementSibling.style.display='flex';\">" +
+                                               "<div class='product-image-placeholder' style='display:none; background: linear-gradient(45deg, #ff6b35, #ffa500); width: 60px; height: 60px; border-radius: 6px; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;'>No Image</div>");
+                                } else {
+                                    out.println("<div class='product-image-placeholder' style='background: linear-gradient(45deg, #ff6b35, #ffa500); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; width: 60px; height: 60px; border-radius: 6px;'>No Image</div>");
+                                }
+                            %>
+                        </td>
                         <td><%=name%></td>
                         <td><%=desc%></td>
                         <td>₹<%=price%></td>
@@ -360,14 +381,14 @@
                         <td><input type="number" name="quantity" value="1" min="1" max="<%=stock%>" required></td>
                         <td>
                             <input type="hidden" name="productId" value="<%=id%>">
-                            <button type="submit" class="btn">🛒 Add to Cart</button>
+                            <button type="submit" class="btn">Add to Cart</button>
                         </td>
                         </form>
                     </tr>
         <%
                 }
             } catch(Exception e){
-                out.println("<tr><td colspan='6' style='color:#ff6b6b;'>Error: "+e.getMessage()+"</td></tr>");
+                out.println("<tr><td colspan='7' style='color:#dc2626;'>Error: "+e.getMessage()+"</td></tr>");
             } finally {
                 try { if (rs != null) rs.close(); } catch (Exception ex) {}
                 try { if (st != null) st.close(); } catch (Exception ex) {}

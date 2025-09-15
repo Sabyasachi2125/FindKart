@@ -29,7 +29,7 @@
     <title>Order Confirmation - FindKart</title>
     <style>
         /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         /* Reset */
         * {
@@ -39,117 +39,75 @@
         }
 
         body {
-            font-family: 'Inter', 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             min-height: 100vh;
-            color: #ffffff;
+            color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(120, 130, 200, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.3) 0%, transparent 50%);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(120deg); }
-            66% { transform: translateY(30px) rotate(240deg); }
         }
 
         /* Success Container */
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(45, 77, 104, 0.15);
+            border: 1px solid #e2e8f0;
             padding: 50px 40px;
             text-align: center;
-            position: relative;
-            z-index: 1;
             max-width: 800px;
             width: 100%;
-            animation: successAnimation 1s ease-out;
+            position: relative;
         }
 
-        @keyframes successAnimation {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.8);
-            }
-            50% {
-                transform: translateY(-10px) scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .container::before {
-            content: '';
+        /* Logo at top of container */
+        .container-logo {
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d, #667eea, #764ba2);
-            border-radius: 30px;
-            z-index: -1;
-            background-size: 300% 300%;
-            animation: borderGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b35, #ffa500);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
         /* Success Message */
         .container h1 {
-            font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #059669;
+            margin-top: 20px;
         }
 
         .order-id {
-            font-size: 1.4rem;
-            color: #4ecdc4;
+            font-size: 1.3rem;
+            color: #2d4d68;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             padding: 15px 25px;
-            background: rgba(78, 205, 196, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(78, 205, 196, 0.3);
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 10px;
+            border: 2px solid #bbf7d0;
+            box-shadow: 0 2px 10px rgba(5, 150, 105, 0.1);
         }
 
         /* Order Summary Table */
         .order-summary {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(45, 77, 104, 0.1);
         }
 
         table {
@@ -158,88 +116,80 @@
         }
 
         th, td {
-            padding: 15px 12px;
+            padding: 12px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #e5e7eb;
         }
 
         th {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: linear-gradient(135deg, #2d4d68 0%, #1e3a52 100%);
+            color: white;
             font-weight: 600;
-            font-size: 1em;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         td {
-            color: rgba(255, 255, 255, 0.9);
+            color: #2d4d68;
             font-weight: 500;
         }
 
+        tr:last-child td {
+            border-bottom: none;
+        }
+
         .total-row {
-            background: rgba(78, 205, 196, 0.2) !important;
+            background-color: #f8fafc !important;
             font-weight: 600;
             font-size: 1.1em;
         }
 
         .total-row th {
-            color: #4ecdc4;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%) !important;
+            color: white;
         }
 
         /* Action Buttons */
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
             color: #ffffff;
             padding: 15px 30px;
-            border-radius: 15px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 15px;
             text-decoration: none;
             margin: 10px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #e55a2b 0%, #e67832 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
         .btn.secondary {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
         }
 
         .btn.secondary:hover {
-            box-shadow: 0 15px 35px rgba(78, 205, 196, 0.4);
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4);
         }
 
         /* Error Styling */
         .error {
-            color: #ff6b6b;
+            color: #dc2626;
             text-align: center;
             margin-top: 50px;
-            padding: 20px;
-            background: rgba(255, 107, 107, 0.1);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 15px;
+            padding: 16px;
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
             max-width: 600px;
             margin: 50px auto;
         }
@@ -247,45 +197,40 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                padding: 40px 30px;
+                padding: 30px 20px;
             }
             
             .container h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .order-id {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             
             th, td {
-                padding: 10px 8px;
-                font-size: 0.9em;
+                padding: 8px 6px;
+                font-size: 12px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .container h1 {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
             
             .order-id {
-                font-size: 1rem;
-                padding: 12px 20px;
-            }
-            
-            th, td {
-                padding: 8px 5px;
-                font-size: 0.8em;
+                font-size: 0.9rem;
+                padding: 10px 15px;
             }
             
             .btn {
-                padding: 12px 20px;
-                font-size: 1rem;
+                padding: 10px 16px;
+                font-size: 13px;
                 margin: 5px;
             }
         }
@@ -373,7 +318,8 @@
 %>
 
     <div class="container">
-        <h1>🎉 Order Placed Successfully!</h1>
+        <div class="container-logo">🛒</div>
+        <h1>Order Placed Successfully!</h1>
         <div class="order-id">Your Order ID: <strong><%=orderId%></strong></div>
 
         <div class="order-summary">
@@ -416,13 +362,13 @@
             </table>
         </div>
 
-        <a href="products.jsp" class="btn">🛍️ Continue Shopping</a>
-        <a href="myOrders.jsp" class="btn secondary">📦 View Orders</a>
+        <a href="products.jsp" class="btn">Continue Shopping</a>
+        <a href="myOrders.jsp" class="btn secondary">View Orders</a>
     </div>
 
 <%
     } catch(Exception e){
-        out.println("<div class='error'>⚠️ Error placing order: "+e.getMessage()+"</div>");
+        out.println("<div class='error'>Error placing order: "+e.getMessage()+"</div>");
         e.printStackTrace();
     } finally {
         try { if (conn != null) conn.close(); } catch (Exception ex) {}

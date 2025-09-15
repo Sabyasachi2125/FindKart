@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Web Application
+# 🛒 FindKart - E-Commerce Web Application
 
 ![Java](https://img.shields.io/badge/Java-24-orange?style=flat-square&logo=java)
 ![Maven](https://img.shields.io/badge/Maven-3.x-blue?style=flat-square&logo=apache-maven)
@@ -6,190 +6,146 @@
 ![JSP](https://img.shields.io/badge/JSP-Servlet-green?style=flat-square)
 ![Tomcat](https://img.shields.io/badge/Tomcat-7-yellow?style=flat-square&logo=apache-tomcat)
 
-A complete e-commerce web application built with Java, JSP/Servlets, and MySQL. Features include user management, product catalog, shopping cart, and order processing.
+A complete e-commerce web application built with Java, JSP/Servlets, and MySQL. Features include user management, product catalog, shopping cart, order processing, and a modern responsive UI with the FindKart brand theme.
 
 ## 🌟 Features
 
-- **User Authentication**: Registration, login, and session management
-- **Product Catalog**: Browse products with details and stock information
-- **Shopping Cart**: Add/remove items with persistent session storage
-- **Order Management**: Place orders and view order history
-- **Responsive Design**: Mobile-friendly interface with modern styling
-- **Admin Functions**: User and product management capabilities
+- **🔐 User Authentication**: Registration, login, and session management
+- **📦 Product Catalog**: Browse products with images, details, and stock information
+- **🛍️ Shopping Cart**: Add/remove items with persistent session storage
+- **📋 Order Management**: Place orders and view detailed order history
+- **🎨 Modern UI**: Responsive design with FindKart brand colors and logo
+- **🖼️ Image Support**: Product images throughout the application
+- **👤 Admin Functions**: User and product management capabilities
+- **📱 Mobile Friendly**: Responsive design for all screen sizes
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- JDK 24 (installed ✓)
-- Maven (installed ✓) 
-- MySQL Server (installed ✓)
+- ☕ JDK 24
+- 📦 Maven 3.x
+- 🗄️ MySQL Server 8.0
 
-## 🛠️ Installation & Setup
+### 🛠️ Installation & Setup
 
-### 1. 💾 DATABASE SETUP
-
-#### Step 1a: Create Database Schema
-1. Start MySQL server
-2. Open MySQL command line or MySQL Workbench
-3. Run the SQL script: `create_database_schema.sql`
-
+#### 1. Clone the Repository
 ```bash
-mysql -u root -p < create_database_schema.sql
+git clone https://github.com/Sabyasachi2125/FindKart.git
+cd FindKart
 ```
 
-#### Step 1b: Update Database Credentials (if needed)
-- Open `src/main/java/com/ecommerce/DBConnection.java`
-- Update the following if your MySQL credentials are different:
-  - `USER = "root"`
-  - `PASS = "Archit@123"` 
-  - `URL = "jdbc:mysql://localhost:3306/ecommerce_db"`
+#### 2. Database Setup
 
-### 2. 📺 ONE-TIME SETUP
-
-#### Step 2a: Install Dependencies & Build Project
+**Option A: Quick Setup**
 ```bash
+# Run the quick start menu
+quick_start.bat
+
+# Then choose:
+# [1] First Time Setup
+# [2] Import Database Schema
+```
+
+**Option B: Manual Setup**
+```bash
+# Install dependencies and build
 setup_project.bat
+
+# Create database and import schema
+mysql -u root -p < create_database_schema.sql
+
+# Update to PNG images (if you have image files)
+update_to_png_images.bat
 ```
-This will:
-- Check Java and Maven installation
-- Download and install all dependencies
-- Compile and package the application
-- Create WAR file in `target/` directory
 
-#### Step 2b: Test Database Connection
-```bash
-check_database.bat
-```
-This will:
-- Test database connectivity
-- Verify if schema is properly created
-- Check if sample data is loaded
-
-### 3. 🌐 RUNNING THE APPLICATION
-
-#### Step 3a: Start Web Server
+#### 3. Start the Application
 ```bash
 start_server.bat
 ```
-This will:
-- Start embedded Tomcat server on port 8080
-- Deploy the application at: http://localhost:8080/ecommerce-web/
-- Keep running until you press Ctrl+C
 
-#### Step 3b: Open Frontend (Optional)
-```bash
-open_frontend.bat
-```
-This will:
-- Check if server is running
-- Open the application in your default browser
-- Show available page URLs
+#### 4. Access the Application
+Open your browser and visit: `http://localhost:8080/ecommerce-web/`
 
-## 🌍 Application URLs
+## 🎨 Brand Theme
 
-After starting the server, access these pages:
+FindKart features a modern, professional design with:
+- **Primary Colors**: Navy Blue (`#2d4d68`) and Orange (`#ff6b35`)
+- **Logo**: Shopping cart emoji (🛒) with "FindKart" branding
+- **Design**: Clean, responsive layout inspired by modern e-commerce platforms
 
-- **Home Page**: http://localhost:8080/ecommerce-web/
-- **Login**: http://localhost:8080/ecommerce-web/login.jsp
-- **Register**: http://localhost:8080/ecommerce-web/register.jsp
-- **Products**: http://localhost:8080/ecommerce-web/products.jsp
+## 📸 Product Images
 
-## 👥 Default User Accounts
+The application supports product images:
+- Place PNG/JPG images in `src/main/webapp/images/`
+- Expected image files: `laptop.png`, `smartphone.png`, `headphones.png`, etc.
+- Run `verify_png_setup.bat` to check your image setup
 
-The database comes with sample users:
+## 🗄️ Database Schema
 
-1. **Admin Account**
-   - Email: admin@ecommerce.com
-   - Password: admin123
+The application uses MySQL with the following main tables:
+- **users**: User accounts and authentication
+- **products**: Product catalog with images
+- **orders**: Order information
+- **order_items**: Order line items
 
-2. **Regular User**
-   - Email: john@email.com
-   - Password: john123
+### Default Login Credentials
+- **Admin**: `admin@ecommerce.com` / `admin123`
+- **User**: `john@email.com` / `john123`
 
-## 🚀 Features Available
-
-1. **User Management**
-   - User registration
-   - User login/logout
-   - Role-based access (Admin/User/Guest)
-
-2. **Product Management**
-   - Browse products
-   - View product details
-   - Stock management
-
-3. **Shopping Cart**
-   - Add/remove items
-   - Quantity management
-   - Cart persistence in session
-
-4. **Order Management**
-   - Place orders
-   - Order history
-   - Order tracking
-
-## 🔧 Troubleshooting
-
-### Database Connection Issues
-- Ensure MySQL service is running
-- Check database credentials in `DBConnection.java`
-- Verify database `ecommerce_db` exists
-- Run `check_database.bat` to test connection
-
-### Build Issues
-- Ensure JDK 24 is properly installed
-- Check Maven installation: `mvn -version`
-- Clear Maven cache: `mvn clean`
-- Re-run `setup_project.bat`
-
-### Server Issues
-- Check if port 8080 is available
-- Ensure WAR file exists in `target/` directory
-- Check server logs for errors
-- Try restarting the server
-
-## 📚 Project Structure
+## 📁 Project Structure
 
 ```
-Ecommerce1/
+FindKart/
 ├── src/main/
 │   ├── java/com/ecommerce/
 │   │   └── DBConnection.java          # Database connection
 │   └── webapp/
-│       ├── WEB-INF/web.xml           # Web configuration
-│       ├── *.jsp                     # JSP pages
-│       └── index.html                # Welcome page
+│       ├── *.jsp                      # JSP pages
+│       ├── images/                    # Product images
+│       └── WEB-INF/web.xml           # Web configuration
 ├── target/                           # Build output
+├── *.sql                            # Database scripts
+├── *.bat                            # Setup scripts
 ├── pom.xml                          # Maven configuration
-├── create_database_schema.sql       # Database schema
-├── setup_project.bat               # One-time setup
-├── check_database.bat              # Database test
-├── start_server.bat                # Start web server
-└── open_frontend.bat               # Open browser
+└── README.md                        # This file
 ```
 
-## 📝 Development Notes
+## 🔧 Available Scripts
 
-- Application uses JSP/Servlet architecture
-- Direct JDBC for database operations
-- Session-based cart management
-- Basic authentication (no encryption)
-- Responsive UI with inline CSS
+- `quick_start.bat` - Interactive setup menu
+- `setup_project.bat` - Install dependencies and build
+- `start_server.bat` - Start the web server
+- `import_database.bat` - Import database schema
+- `update_to_png_images.bat` - Update database for PNG images
+- `verify_png_setup.bat` - Verify image setup
 
-## ⚠️ Security Considerations
+## 📱 Pages & Features
 
-⚠️ **Important**: This is a development/learning application:
-- Passwords are stored in plain text
+- **🏠 Home** (`index.jsp`) - Welcome page with FindKart branding
+- **📦 Products** (`products.jsp`) - Product catalog with images
+- **🛒 Cart** (`cart.jsp`) - Shopping cart with product images
+- **💳 Checkout** (`checkout.jsp`) - Order placement
+- **📋 My Orders** (`myOrders.jsp`) - Order history with images
+- **🔐 Login/Register** (`login.jsp`, `register.jsp`) - User authentication
+
+## 🛠️ Technical Stack
+
+- **Frontend**: JSP, HTML5, CSS3 (responsive design)
+- **Backend**: Java Servlets, JDBC
+- **Database**: MySQL 8.0
+- **Build Tool**: Maven 3.x
+- **Server**: Apache Tomcat 7 (embedded)
+- **Architecture**: MVC pattern with JSP/Servlet
+
+## 🔒 Security Note
+
+⚠️ **Development Application**: This is a learning/development project with basic security:
+- Plain text password storage
 - No input validation/sanitization
-- Vulnerable to SQL injection
-- No HTTPS/encryption
-- For learning purposes only, not production-ready
+- No HTTPS encryption
+- For educational purposes only
 
 ## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-### How to Contribute
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -201,17 +157,45 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
+## 🐛 Troubleshooting
 
-- Built with Java and JSP/Servlet technology
-- Uses MySQL for data persistence
-- Maven for project management and build automation
-- Apache Tomcat for web server functionality
+### Common Issues
 
-## 📧 Contact
+1. **Port 8080 already in use**
+   - Stop other applications using port 8080
+   - Or modify the port in the Tomcat configuration
 
-If you have any questions or suggestions, feel free to reach out!
+2. **Database connection failed**
+   - Ensure MySQL server is running
+   - Check credentials in `DBConnection.java`
+   - Run `check_database.bat` to test connection
+
+3. **Images not showing**
+   - Verify PNG files exist in `src/main/webapp/images/`
+   - Run `update_to_png_images.bat`
+   - Check browser console for 404 errors
+
+4. **Build failed**
+   - Ensure JDK 24 and Maven are properly installed
+   - Run `mvn clean install` manually
+   - Check internet connection for dependencies
+
+## 📞 Support
+
+If you encounter any issues:
+1. Check the troubleshooting section above
+2. Run the verification scripts (`verify_png_setup.bat`)
+3. Open an issue on GitHub with error details
+
+## 🎯 Future Enhancements
+
+- [ ] Enhanced security (password hashing, input validation)
+- [ ] Admin panel for product management
+- [ ] Product categories and search functionality
+- [ ] Payment gateway integration
+- [ ] Email notifications
+- [ ] Product reviews and ratings
 
 ---
 
-⭐ **If you found this project helpful, please give it a star!** ⭐
+**Happy Shopping with FindKart! 🛒**

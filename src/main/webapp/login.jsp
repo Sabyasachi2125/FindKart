@@ -14,7 +14,7 @@
     <title>Login - FindKart</title>
     <style>
     /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
     /* Reset */
     * {
@@ -24,212 +24,171 @@
     }
 
     body {
-        font-family: 'Inter', 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         min-height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: #ffffff;
-        overflow: hidden;
+        color: #333;
         position: relative;
     }
 
-    /* Animated background particles */
-    body::before {
-        content: '';
+    /* Logo Section at Top */
+    .top-logo {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 20% 80%, rgba(120, 130, 200, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.3) 0%, transparent 50%);
-        animation: float 8s ease-in-out infinite;
+        top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
     }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-30px) rotate(120deg); }
-        66% { transform: translateY(30px) rotate(240deg); }
+    .logo {
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #ff6b35, #ffa500);
+        border-radius: 15px;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    }
+
+    .brand-name {
+        color: #2d4d68;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+
+    .find {
+        color: #2d4d68;
+    }
+
+    .kart {
+        color: #ff6b35;
     }
 
     .login-container {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
+        background: #ffffff;
         padding: 50px 40px;
-        border-radius: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-        width: 400px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(45, 77, 104, 0.15);
+        border: 1px solid #e2e8f0;
+        width: 420px;
         text-align: center;
         position: relative;
-        z-index: 1;
-        animation: slideUp 0.8s ease-out;
-    }
-
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .login-container::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
-        border-radius: 25px;
-        z-index: -1;
-        background-size: 200% 200%;
-        animation: borderGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes borderGlow {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+        z-index: 10;
     }
 
     .login-container h2 {
-        font-family: 'Poppins', sans-serif;
-        margin-bottom: 35px;
-        color: #ffffff;
-        font-size: 2.2em;
-        font-weight: 600;
-        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        margin-bottom: 30px;
+        color: #2d4d68;
+        font-size: 2rem;
+        font-weight: 700;
     }
 
     .input-group {
-        position: relative;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
+        text-align: left;
     }
 
     .input-group input {
         width: 100%;
         padding: 15px 20px;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 15px;
-        background: rgba(255, 255, 255, 0.1);
-        color: #ffffff;
-        font-size: 1em;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(10px);
-    }
-
-    .input-group input::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        background-color: #f8fafc;
     }
 
     .input-group input:focus {
         outline: none;
-        border-color: rgba(255, 255, 255, 0.5);
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        background-color: #ffffff;
     }
 
     .login-btn {
         width: 100%;
         padding: 15px;
-        margin-top: 20px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        margin-top: 25px;
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
         color: #ffffff;
         font-weight: 600;
-        font-size: 1.1em;
+        font-size: 16px;
         border: none;
-        border-radius: 15px;
+        border-radius: 8px;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .login-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        transition: left 0.6s;
-    }
-
-    .login-btn:hover::before {
-        left: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
     }
 
     .login-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(135deg, #e55a2b 0%, #e67832 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
     }
 
     .error {
-        color: #ff6b6b;
+        color: #dc2626;
         margin-top: 15px;
-        font-weight: 500;
+        font-size: 14px;
         padding: 10px;
-        background: rgba(255, 107, 107, 0.1);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 107, 107, 0.3);
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 4px;
     }
 
     .register-link {
         display: inline-block;
         margin-top: 25px;
-        color: rgba(255, 255, 255, 0.8);
+        color: #ff6b35;
         text-decoration: none;
-        font-size: 0.95em;
-        transition: all 0.3s ease;
-        padding: 8px 16px;
-        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.3s ease;
     }
 
     .register-link:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
+        color: #e55a2b;
+        text-decoration: underline;
     }
 
     /* Responsive */
     @media(max-width: 480px) {
         .login-container {
             width: 90%;
-            padding: 40px 30px;
-        }
-        
-        .login-container h2 {
-            font-size: 1.8em;
+            padding: 30px 20px;
         }
     }
 </style>
 
 </head>
 <body>
+    <!-- Top Logo -->
+    <a href="index.jsp" class="top-logo">
+        <div class="logo">🛒</div>
+        <div class="brand-name">
+            <span class="find">Find</span><span class="kart">Kart</span>
+        </div>
+    </a>
     <div class="login-container">
-        <h2>🔐 Login to FindKart</h2>
+        <h2>Sign in to FindKart</h2>
         <form method="post" action="login.jsp">
             <div class="input-group">
-                <input type="text" name="email" placeholder="📧 Email Address" required>
+                <input type="text" name="email" placeholder="Email Address" required>
             </div>
             <div class="input-group">
-                <input type="password" name="password" placeholder="🔒 Password" required>
+                <input type="password" name="password" placeholder="Password" required>
             </div>
             <button type="submit" class="login-btn">Sign In</button>
         </form>
-        <a href="register.jsp" class="register-link">🆕 New user? Create Account</a>
+        <a href="register.jsp" class="register-link">New user? Create Account</a>
 
         <%
             String email = request.getParameter("email");

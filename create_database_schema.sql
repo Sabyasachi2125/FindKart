@@ -76,17 +76,17 @@ INSERT INTO users (fullname, email, password, gender, dob, phone, address, role)
 ('Jane Smith', 'jane@email.com', 'jane123', 'Female', '1998-08-20', '8765432109', '456 Oak Ave, Townsburg', 'User');
 
 -- Insert sample products
-INSERT INTO products (name, description, price, stock, category) VALUES
-('Laptop', 'High-performance laptop for work and gaming', 75000.00, 50, 'Electronics'),
-('Smartphone', 'Latest Android smartphone with great camera', 25000.00, 100, 'Electronics'),
-('Headphones', 'Wireless Bluetooth headphones with noise cancellation', 5000.00, 75, 'Electronics'),
-('T-Shirt', 'Cotton comfortable t-shirt for casual wear', 800.00, 200, 'Clothing'),
-('Jeans', 'Premium denim jeans for men and women', 2500.00, 150, 'Clothing'),
-('Running Shoes', 'Comfortable running shoes for sports', 4000.00, 80, 'Footwear'),
-('Coffee Mug', 'Ceramic coffee mug for daily use', 300.00, 300, 'Home & Kitchen'),
-('Book - Programming', 'Complete guide to web development', 1200.00, 50, 'Books'),
-('Backpack', 'Durable backpack for travel and daily use', 1800.00, 60, 'Accessories'),
-('Water Bottle', 'Stainless steel water bottle', 600.00, 120, 'Accessories');
+INSERT INTO products (name, description, price, stock, category, image_url) VALUES
+('Laptop', 'High-performance laptop for work and gaming', 75000.00, 50, 'Electronics', 'laptop.png'),
+('Smartphone', 'Latest Android smartphone with great camera', 25000.00, 100, 'Electronics', 'smartphone.png'),
+('Headphones', 'Wireless Bluetooth headphones with noise cancellation', 5000.00, 75, 'Electronics', 'headphones.png'),
+('T-Shirt', 'Cotton comfortable t-shirt for casual wear', 800.00, 200, 'Clothing', 'tshirt.png'),
+('Jeans', 'Premium denim jeans for men and women', 2500.00, 150, 'Clothing', 'jeans.png'),
+('Running Shoes', 'Comfortable running shoes for sports', 4000.00, 80, 'Footwear', 'shoes.png'),
+('Coffee Mug', 'Ceramic coffee mug for daily use', 300.00, 300, 'Home & Kitchen', 'mug.png'),
+('Book - Programming', 'Complete guide to web development', 1200.00, 50, 'Books', 'book.png'),
+('Backpack', 'Durable backpack for travel and daily use', 1800.00, 60, 'Accessories', 'backpack.png'),
+('Water Bottle', 'Stainless steel water bottle', 600.00, 120, 'Accessories', 'bottle.png');
 
 -- =========================================
 -- 6. CREATE INDEXES FOR PERFORMANCE
