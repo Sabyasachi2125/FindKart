@@ -17,138 +17,232 @@
     <meta charset="UTF-8">
     <title>E-Commerce Home</title>
 <style>
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 /* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
-/* Body with gradient background */
+/* Modern Dark Theme */
 body {
+    font-family: 'Inter', 'Poppins', sans-serif;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
-    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    overflow-x: hidden;
 }
 
-/* Glassmorphic Navbar */
+/* Glass Navigation Bar */
 .navbar {
-    width: 90%;
-    margin: 20px auto;
-    padding: 15px 30px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    gap: 20px;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+}
+
+.navbar:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .navbar a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.navbar a:hover::before {
+    left: 100%;
 }
 
 .navbar a:hover {
-    background: rgba(255,255,255,0.3);
-    color: #000;
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: #f0f0f0;
 }
 
-/* Floating welcome card */
+/* Welcome Section */
+.welcome-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 100px 20px 20px;
+}
+
 .welcome-card {
-    margin-top: 60px;
-    width: 90%;
-    max-width: 700px;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(15px);
+    max-width: 600px;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
     border-radius: 30px;
-    padding: 50px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    animation: float 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
 }
 
-.welcome-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: rotate 8s linear infinite;
 }
 
-/* Floating animation */
+.welcome-card > * {
+    position: relative;
+    z-index: 1;
+}
+
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .welcome-card h1 {
-    font-size: 3em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
     font-weight: 700;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #f093fb);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
+    background-clip: text;
+    margin-bottom: 24px;
+    animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .welcome-card p {
-    font-size: 1.2em;
-    color: #000000;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-weight: 400;
 }
 
-/* Gradient Call-to-action Button */
-.cta-btn {
+.cta-button {
     display: inline-block;
-    padding: 15px 40px;
-    border-radius: 50px;
-    border: none;
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #ffffff;
     text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-.cta-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
 }
 
-/* Responsive */
-@media(max-width:768px) {
-    .welcome-card {
-        padding: 35px 20px;
-    }
-    .welcome-card h1 {
-        font-size: 2.2em;
-    }
-    .welcome-card p {
-        font-size: 1em;
-    }
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     .navbar {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 10px;
+        padding: 10px 20px;
+        top: 10px;
     }
+    
     .navbar a {
-        padding: 6px 15px;
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+    
+    .welcome-card {
+        margin: 80px 10px 20px;
+        padding: 40px 20px;
+    }
+    
+    .welcome-card h1 {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-card p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-card h1 {
+        font-size: 2rem;
+    }
+    
+    .welcome-card p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1rem;
     }
 }
 </style>
@@ -158,16 +252,19 @@ body {
 </head>
 <body>
     <div class="navbar">
-        <a href="index.jsp">Home</a>
-        <a href="products.jsp">Products</a>
-        <a href="cart.jsp">Cart</a>
-        <a href="myOrders.jsp">My Orders</a>
-        <a href="logout.jsp">Logout</a>
+        <a href="index.jsp">🏠 Home</a>
+        <a href="products.jsp">🛍️ Products</a>
+        <a href="cart.jsp">🛒 Cart</a>
+        <a href="myOrders.jsp">📦 My Orders</a>
+        <a href="logout.jsp">🚪 Logout</a>
     </div>
 
-    <div class="welcome-card">
-        <h1>Welcome to FindKart 👋</h1>
-        <p>Explore our products, add them to your cart, and enjoy seamless shopping!</p>
+    <div class="welcome-section">
+        <div class="welcome-card">
+            <h1>Welcome to FindKart ✨</h1>
+            <p>Discover amazing products, enjoy seamless shopping, and experience the future of e-commerce!</p>
+            <a href="products.jsp" class="cta-button">Start Shopping</a>
+        </div>
     </div>
 </body>
 </html>

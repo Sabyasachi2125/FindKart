@@ -13,109 +13,242 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Checkout - Confirm Order</title>
+    <title>Checkout - FindKart</title>
    <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f9f9f9;
-        color: #333;
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+    /* Reset */
+    * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #ffffff;
+        padding: 20px;
+    }
+
+    /* Page Content */
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
         padding: 20px;
     }
 
     h2 {
         text-align: center;
-        color: #5a67d8; /* soft purple */
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5em;
+        font-weight: 600;
         margin-bottom: 40px;
-        font-size: 2em;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Order Summary Table */
+    .order-summary {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 40px;
     }
 
     table {
-        width: 80%;
-        margin: auto;
+        width: 100%;
         border-collapse: collapse;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        background: #ffffff;
     }
 
     th, td {
-        padding: 12px;
+        padding: 18px 15px;
         text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     th {
-        background: #5a67d8; /* header color */
-        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         font-weight: 600;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    tr:nth-child(even) {
-        background: #f5f5fa;
+    td {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+    }
+
+    .total-row {
+        background: rgba(255, 255, 255, 0.15) !important;
+        font-weight: 600;
+        font-size: 1.2em;
+    }
+
+    .total-row th {
+        color: #4ecdc4;
+    }
+
+    /* Checkout Form */
+    .checkout-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1em;
     }
 
     textarea, select {
-        width: 50%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         font-size: 1em;
-        margin-top: 5px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        font-family: inherit;
+    }
+
+    textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
     }
 
     textarea:focus, select:focus {
         outline: none;
-        border-color: #5a67d8;
-        box-shadow: 0 0 5px rgba(90,103,216,0.5);
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    select option {
+        background: #333;
+        color: #fff;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
     }
 
     .btn {
-        display: inline-block;
-        padding: 12px 25px;
-        margin-top: 20px;
-        background: #ff6f61; /* soft reddish */
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1.2em;
+        padding: 18px 40px;
         border: none;
+        border-radius: 15px;
         cursor: pointer;
-        font-size: 1em;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn:hover::before {
+        left: 100%;
     }
 
     .btn:hover {
-        background: #ff4c3b;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(78, 205, 196, 0.4);
     }
 
-    form {
-        text-align: center;
-        margin-top: 30px;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 2em;
+        }
+        
+        .order-summary,
+        .checkout-form {
+            margin: 10px;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        th, td {
+            padding: 12px 8px;
+            font-size: 0.9em;
+        }
     }
 
-    label {
-        font-weight: 600;
-        display: block;
-        margin-top: 15px;
-        margin-bottom: 5px;
-        color: #555;
-    }
-
-    @media(max-width: 768px) {
-        table { width: 95%; }
-        textarea, select { width: 80%; }
+    @media (max-width: 480px) {
+        .container {
+            padding: 10px;
+        }
+        
+        th, td {
+            padding: 10px 5px;
+            font-size: 0.8em;
+        }
+        
+        .checkout-form {
+            padding: 20px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            font-size: 1em;
+        }
     }
 </style>
 
 </head>
 <body>
-    <h2 style="text-align:center;">Confirm Your Order</h2>
+    <div class="container">
+        <h2>📦 Confirm Your Order</h2>
 
-    <table>
-        <tr><th>Product</th><th>Quantity</th><th>Price (₹)</th><th>Total (₹)</th></tr>
+        <div class="order-summary">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price (₹)</th>
+                    <th>Total (₹)</th>
+                </tr>
         <%
             Connection conn = null;
             try {
@@ -150,25 +283,36 @@
                     }
                 }
             } catch(Exception e){ 
-                out.println("<tr><td colspan='4'>Error: "+e.getMessage()+"</td></tr>"); 
+                out.println("<tr><td colspan='4' style='color:#ff6b6b;'>Error: "+e.getMessage()+"</td></tr>"); 
             } finally {
                 try { if (conn != null) conn.close(); } catch (Exception ex) {}
             }
         %>
-        <tr><th colspan="3">Grand Total</th><th>₹<%=grandTotal%></th></tr>
-    </table>
+        <tr class="total-row">
+            <th colspan="3">Grand Total</th>
+            <th>₹<%=grandTotal%></th>
+        </tr>
+            </table>
+        </div>
 
-    <form action="placeOrders.jsp" method="post" style="text-align:center; margin-top:30px;">
-        <label>Shipping Address:</label><br>
-        <textarea name="address" rows="3" cols="50" required></textarea><br><br>
+        <div class="checkout-form">
+            <form action="placeOrders.jsp" method="post">
+                <div class="form-group">
+                    <label>🏠 Shipping Address:</label>
+                    <textarea name="address" placeholder="Enter your complete shipping address..." required></textarea>
+                </div>
 
-        <label>Payment Method:</label><br>
-        <select name="payment" required>
-            <option value="Cash on Delivery">Cash on Delivery</option>
-            <option value="Online Payment">Online Payment</option>
-        </select><br><br>
+                <div class="form-group">
+                    <label>💳 Payment Method:</label>
+                    <select name="payment" required>
+                        <option value="Cash on Delivery">💵 Cash on Delivery</option>
+                        <option value="Online Payment">💳 Online Payment</option>
+                    </select>
+                </div>
 
-        <button type="submit" class="btn">Confirm & Pay</button>
-    </form>
+                <button type="submit" class="btn">🚀 Confirm & Pay</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

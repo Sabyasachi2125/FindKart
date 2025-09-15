@@ -25,142 +25,304 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Cart</title>
+    <title>Shopping Cart - FindKart</title>
   <style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body { 
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        background: #f9f9f9; 
-        margin: 0; 
-        padding: 20px; 
-        color: #333;
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #ffffff;
+        padding-top: 80px;
     }
 
-    h2 { 
-        text-align: center; 
-        color: #5a67d8; 
-        margin-bottom: 30px; 
-    }
-
+    /* Fixed Navigation Bar */
     .navbar {
-        background: #667eea; /* soft gradient color */
-        padding: 15px 0;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-radius: 0 0 15px 15px;
-        margin-bottom: 30px;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        gap: 20px;
+        padding: 12px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
     .navbar a {
-        color: white;
-        margin: 0 20px;
+        color: #ffffff;
         text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-        transition: 0.3s;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 25px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .navbar a:hover {
-        color: #ffebc7;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Page Content */
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 { 
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5em;
+        font-weight: 600;
+        margin-bottom: 40px;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Cart Table Wrapper */
+    .cart-wrapper {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 30px;
     }
 
     table {
-        width: 80%;
-        margin: auto;
+        width: 100%;
         border-collapse: collapse;
-        background: #ffffff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
     th, td {
-        padding: 15px;
+        padding: 20px 15px;
         text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     th {
-        background: #5a67d8;
-        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         font-weight: 600;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    tr:nth-child(even) {
-        background: #f1f1f8;
+    td {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
     }
 
+    tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .total-row {
+        background: rgba(255, 255, 255, 0.15) !important;
+        font-weight: 600;
+        font-size: 1.2em;
+    }
+
+    .total-row th {
+        color: #4ecdc4;
+    }
+
+    /* Buttons */
     .btn {
-        padding: 8px 15px;
-        background: #fc8181;
-        color: white;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #ff6b6b, #ff8787);
+        color: #ffffff;
         border: none;
-        border-radius: 5px;
+        border-radius: 12px;
         cursor: pointer;
         font-weight: 600;
-        transition: 0.3s;
+        font-size: 0.9em;
         text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn:hover::before {
+        left: 100%;
     }
 
     .btn:hover {
-        background: #f56565;
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
     }
 
     .checkout-btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 25px;
-        background: #48bb78;
-        color: white;
-        font-weight: 600;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    .checkout-btn:hover {
-        background: #38a169;
-    }
-
-    p {
-        text-align: center;
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        padding: 15px 35px;
         font-size: 1.1em;
         margin-top: 20px;
     }
 
-    @media(max-width:768px){
-        table { width: 95%; }
-        .navbar a { margin: 0 10px; font-size: 14px; }
+    .checkout-btn:hover {
+        box-shadow: 0 15px 35px rgba(78, 205, 196, 0.4);
+    }
+
+    /* Empty Cart Message */
+    .empty-cart {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 60px 40px;
+        margin: 40px auto;
+        max-width: 500px;
+    }
+
+    .empty-cart p {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .empty-cart a {
+        color: #4ecdc4;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1em;
+        padding: 12px 25px;
+        background: rgba(78, 205, 196, 0.2);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .empty-cart a:hover {
+        background: rgba(78, 205, 196, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Checkout Section */
+    .checkout-section {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 20px;
+            top: 10px;
+        }
+        
+        .navbar a {
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+        
+        body {
+            padding-top: 100px;
+        }
+        
+        h2 {
+            font-size: 2em;
+        }
+        
+        .cart-wrapper {
+            margin: 10px;
+            border-radius: 15px;
+        }
+        
+        th, td {
+            padding: 12px 8px;
+            font-size: 0.9em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 10px;
+        }
+        
+        th, td {
+            padding: 10px 5px;
+            font-size: 0.8em;
+        }
+        
+        .btn {
+            padding: 8px 12px;
+            font-size: 0.8em;
+        }
+        
+        .empty-cart {
+            padding: 40px 20px;
+        }
     }
 </style>
 
 </head>
 <body>
     <div class="navbar">
-        <a href="index.jsp">Home</a>
-        <a href="products.jsp">Products</a>
-        <a href="cart.jsp">Cart</a>
-        <a href="myOrders.jsp">My Orders</a>
-        <a href="logout.jsp">Logout</a>
+        <a href="index.jsp">🏠 Home</a>
+        <a href="products.jsp">🛍️ Products</a>
+        <a href="cart.jsp">🛒 Cart</a>
+        <a href="myOrders.jsp">📦 My Orders</a>
+        <a href="logout.jsp">🚪 Logout</a>
     </div>
 
-    <h2>Your Shopping Cart</h2>
+    <div class="container">
+        <h2>🛒 Your Shopping Cart</h2>
 
-    <%
-        double grandTotal = 0.0;
+        <%
+            double grandTotal = 0.0;
 
-        if(cart.isEmpty()) {
-    %>
-        <p style="text-align:center;">Your cart is empty. <a href="products.jsp">Shop now</a></p>
-    <%
-        } else {
-    %>
-    <table>
-        <tr>
-            <th>Product</th>
-            <th>Price (₹)</th>
-            <th>Quantity</th>
-            <th>Total (₹)</th>
-            <th>Action</th>
-        </tr>
+            if(cart.isEmpty()) {
+        %>
+            <div class="empty-cart">
+                <p>😔 Your cart is empty</p>
+                <a href="products.jsp">🛍️ Start Shopping</a>
+            </div>
+        <%
+            } else {
+        %>
+        <div class="cart-wrapper">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Price (₹)</th>
+                    <th>Quantity</th>
+                    <th>Total (₹)</th>
+                    <th>Action</th>
+                </tr>
         <%
             Connection conn = null;
             try {
@@ -188,7 +350,7 @@
             <td><%=qty%></td>
             <td>₹<%=total%></td>
             <td>
-                <a class="btn" href="cart.jsp?remove=<%=pid%>">Remove</a>
+                <a class="btn" href="cart.jsp?remove=<%=pid%>">🗑️ Remove</a>
             </td>
         </tr>
         <%
@@ -202,21 +364,23 @@
 
 
             } catch(Exception e) {
-                out.println("<tr><td colspan='5' style='color:red;'>Error: "+e.getMessage()+"</td></tr>");
+                out.println("<tr><td colspan='5' style='color:#ff6b6b;'>Error: "+e.getMessage()+"</td></tr>");
             } finally {
                 try { if (conn != null) conn.close(); } catch (Exception ex) {}
             }
         %>
-        <tr>
+        <tr class="total-row">
             <th colspan="3">Grand Total</th>
             <th colspan="2">₹ <%=grandTotal%></th>
         </tr>
-    </table>
-    <div style="text-align:center; margin-top:20px;">
-        <a class="checkout-btn" href="checkout.jsp">Proceed to Checkout</a>
+            </table>
+        </div>
+        <div class="checkout-section">
+            <a class="btn checkout-btn" href="checkout.jsp">🚀 Proceed to Checkout</a>
+        </div>
+        <%
+            }
+        %>
     </div>
-    <%
-        }
-    %>
 </body>
 </html>

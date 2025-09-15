@@ -4,114 +4,239 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Registration</title>
+    <title>Register - FindKart</title>
     <style>
-    /* Reset and box-sizing */
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+    /* Reset */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-        background: linear-gradient(135deg, #fdfbfb, #ebedee);
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #333;
+        color: #ffffff;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Animated background */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 25% 25%, rgba(120, 130, 200, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 75%, rgba(255, 107, 107, 0.3) 0%, transparent 50%);
+        animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateX(0px) translateY(0px); }
+        33% { transform: translateX(30px) translateY(-30px); }
+        66% { transform: translateX(-20px) translateY(20px); }
     }
 
     .form-container {
-        background: #ffffff;
-        padding: 40px 35px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        width: 400px;
-        animation: fadeIn 1s ease-in-out;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        padding: 45px 35px;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 450px;
+        position: relative;
+        z-index: 1;
+        animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+        border-radius: 25px;
+        z-index: -1;
+        background-size: 200% 200%;
+        animation: borderGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes borderGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
     }
 
     .form-container h2 {
         text-align: center;
-        color: #5a67d8; /* soft purple */
-        font-size: 2em;
+        font-family: 'Poppins', sans-serif;
+        color: #ffffff;
+        font-size: 2.2em;
         font-weight: 600;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
     }
 
     label {
         display: block;
-        margin-top: 15px;
+        margin-bottom: 8px;
         font-weight: 500;
-        color: #555;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95em;
     }
 
     input, textarea, select {
         width: 100%;
-        padding: 10px 12px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
+        padding: 12px 16px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         font-size: 0.95em;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
     }
 
     input:focus, textarea:focus, select:focus {
         outline: none;
-        border-color: #5a67d8;
-        box-shadow: 0 0 8px rgba(90,103,216,0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
-    button {
+    select {
+        cursor: pointer;
+    }
+
+    select option {
+        background: #333;
+        color: #fff;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .register-btn {
         margin-top: 25px;
-        padding: 12px;
+        padding: 15px;
         width: 100%;
         border: none;
-        background: #5a67d8;
-        color: white;
-        font-weight: bold;
-        font-size: 1em;
-        border-radius: 12px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1.1em;
+        border-radius: 15px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
     }
 
-    button:hover {
-        background: #4c51bf;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    .register-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s;
     }
 
-    .success, .error {
+    .register-btn:hover::before {
+        left: 100%;
+    }
+
+    .register-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .success {
         text-align: center;
         margin-top: 15px;
         font-weight: 500;
+        color: #4ecdc4;
+        padding: 12px;
+        background: rgba(78, 205, 196, 0.1);
+        border-radius: 10px;
+        border: 1px solid rgba(78, 205, 196, 0.3);
     }
 
-    .success { color: #38a169; } /* green */
-    .error { color: #e53e3e; } /* red */
+    .error {
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 500;
+        color: #ff6b6b;
+        padding: 12px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+    }
 
     a {
-        color: #5a67d8;
+        color: #4ecdc4;
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
+        font-weight: 500;
     }
 
     a:hover {
-        color: #4c51bf;
+        color: #45b7d1;
         text-decoration: underline;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width: 420px) {
+    /* Responsive */
+    @media(max-width: 480px) {
         .form-container {
-            width: 90%;
-            padding: 30px 20px;
+            padding: 35px 25px;
+        }
+        
+        .form-container h2 {
+            font-size: 1.8em;
+        }
+        
+        input, textarea, select {
+            padding: 10px 14px;
         }
     }
 </style>
@@ -119,40 +244,56 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>User Registration</h2>
+        <h2>🆕 Join FindKart</h2>
         <form method="post" action="register.jsp">
-            <label>Full Name:</label>
-            <input type="text" name="fullname" required>
+            <div class="input-group">
+                <label>👤 Full Name:</label>
+                <input type="text" name="fullname" required>
+            </div>
 
-            <label>Email:</label>
-            <input type="email" name="email" required>
+            <div class="input-group">
+                <label>📧 Email:</label>
+                <input type="email" name="email" required>
+            </div>
 
-            <label>Password:</label>
-            <input type="password" name="password" required>
+            <div class="input-group">
+                <label>🔒 Password:</label>
+                <input type="password" name="password" required>
+            </div>
 
-            <label>Gender:</label>
-            <select name="gender" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
+            <div class="input-group">
+                <label>♂️ Gender:</label>
+                <select name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
 
-            <label>Date of Birth:</label>
-            <input type="date" name="dob" required>
+            <div class="input-group">
+                <label>📅 Date of Birth:</label>
+                <input type="date" name="dob" required>
+            </div>
 
-            <label>Phone:</label>
-            <input type="text" name="phone" required>
+            <div class="input-group">
+                <label>📞 Phone:</label>
+                <input type="text" name="phone" required>
+            </div>
 
-            <label>Address:</label>
-            <textarea name="address" rows="3"></textarea>
+            <div class="input-group">
+                <label>🏠 Address:</label>
+                <textarea name="address" rows="3"></textarea>
+            </div>
 
-            <label>Role:</label>
-            <select name="role" required>
-                <option value="User" selected>User</option>
-                <option value="Admin">Admin</option>
-                <option value="Guest">Guest</option>
-            </select>
+            <div class="input-group">
+                <label>🔑 Role:</label>
+                <select name="role" required>
+                    <option value="User" selected>User</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Guest">Guest</option>
+                </select>
+            </div>
 
-            <button type="submit">Register</button>
+            <button type="submit" class="register-btn">Create Account</button>
         </form>
 
         <%

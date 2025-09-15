@@ -26,113 +26,267 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Order Confirmation</title>
+    <title>Order Confirmation - FindKart</title>
     <style>
-        /* Global */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        /* Reset */
+        * {
             margin: 0;
             padding: 0;
-        }
-        h1, h2, p {
-            margin: 0;
-        }
-        a {
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            opacity: 0.8;
+            box-sizing: border-box;
         }
 
-        /* Container */
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 130, 200, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.3) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+
+        /* Success Container */
         .container {
-            max-width: 800px;
-            margin: 60px auto;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            padding: 50px 40px;
             text-align: center;
-            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            width: 100%;
+            animation: successAnimation 1s ease-out;
         }
 
-        /* Header */
+        @keyframes successAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d, #667eea, #764ba2);
+            border-radius: 30px;
+            z-index: -1;
+            background-size: 300% 300%;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Success Message */
         .container h1 {
+            font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
-            color: #4CAF50;
+            font-weight: 700;
             margin-bottom: 20px;
-        }
-        .container p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 40px;
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Order ID */
         .order-id {
-            font-size: 1.5rem;
-            color: #ff6f61;
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            color: #4ecdc4;
+            font-weight: 600;
+            margin-bottom: 40px;
+            padding: 15px 25px;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(78, 205, 196, 0.3);
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            background: #4CAF50;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            margin: 10px;
-            transition: 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .btn:hover {
-            background: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        /* Order Summary Table */
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
         }
+
         th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px 12px;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         th {
-            background: #4CAF50;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
         td {
-            color: #333;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            0% {opacity: 0; transform: translateY(-20px);}
-            100% {opacity: 1; transform: translateY(0);}
+        .total-row {
+            background: rgba(78, 205, 196, 0.2) !important;
+            font-weight: 600;
+            font-size: 1.1em;
         }
 
-        /* Responsive */
-        @media(max-width: 768px){
+        .total-row th {
+            color: #4ecdc4;
+        }
+
+        /* Action Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 15px 35px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Error Styling */
+        .error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .container {
-                padding: 30px 20px;
+                padding: 40px 30px;
             }
+            
             .container h1 {
                 font-size: 2rem;
             }
+            
             .order-id {
                 font-size: 1.2rem;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .container h1 {
+                font-size: 1.8rem;
+            }
+            
+            .order-id {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+            
+            th, td {
+                padding: 8px 5px;
+                font-size: 0.8em;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+                margin: 5px;
             }
         }
     </style>
@@ -220,10 +374,16 @@
 
     <div class="container">
         <h1>🎉 Order Placed Successfully!</h1>
-        <p class="order-id">Your Order ID is <strong><%=orderId%></strong></p>
+        <div class="order-id">Your Order ID: <strong><%=orderId%></strong></div>
 
-        <table>
-            <tr><th>Product ID</th><th>Quantity</th><th>Price (₹)</th><th>Total (₹)</th></tr>
+        <div class="order-summary">
+            <table>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                    <th>Price (₹)</th>
+                    <th>Total (₹)</th>
+                </tr>
             <%
                 for(Map.Entry<Integer,Integer> entry : cart.entrySet()){
                     int pid = entry.getKey();
@@ -249,19 +409,20 @@
                 <td>₹<%=total%></td>
             </tr>
             <% } %>
-            <tr>
+            <tr class="total-row">
                 <th colspan="3">Grand Total</th>
                 <th>₹<%=grandTotal%></th>
             </tr>
-        </table>
+            </table>
+        </div>
 
-        <a href="products.jsp" class="btn">Continue Shopping</a>
-        <a href="myOrders.jsp" class="btn">View Orders</a>
+        <a href="products.jsp" class="btn">🛍️ Continue Shopping</a>
+        <a href="myOrders.jsp" class="btn secondary">📦 View Orders</a>
     </div>
 
 <%
     } catch(Exception e){
-        out.println("<p style='color:red; text-align:center; margin-top:50px;'>Error placing order: "+e.getMessage()+"</p>");
+        out.println("<div class='error'>⚠️ Error placing order: "+e.getMessage()+"</div>");
         e.printStackTrace();
     } finally {
         try { if (conn != null) conn.close(); } catch (Exception ex) {}

@@ -11,9 +11,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login - E-Commerce</title>
+    <title>Login - FindKart</title>
     <style>
-    /* Reset default margin and padding */
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+    /* Reset */
     * {
         margin: 0;
         padding: 0;
@@ -21,111 +24,212 @@
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #fdfbfb, #ebedee);
-        height: 100vh;
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #333;
+        color: #ffffff;
+        overflow: hidden;
+        position: relative;
     }
 
-    .login-box {
-        background: #ffffff;
-        padding: 40px 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        width: 350px;
+    /* Animated background particles */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 80%, rgba(120, 130, 200, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.3) 0%, transparent 50%);
+        animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-30px) rotate(120deg); }
+        66% { transform: translateY(30px) rotate(240deg); }
+    }
+
+    .login-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        padding: 50px 40px;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        width: 400px;
         text-align: center;
-        animation: fadeIn 1s ease-in-out;
+        position: relative;
+        z-index: 1;
+        animation: slideUp 0.8s ease-out;
     }
 
-    .login-box h2 {
-        margin-bottom: 30px;
-        color: #5a67d8; /* soft purple */
-        font-size: 2em;
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .login-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+        border-radius: 25px;
+        z-index: -1;
+        background-size: 200% 200%;
+        animation: borderGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes borderGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    .login-container h2 {
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 35px;
+        color: #ffffff;
+        font-size: 2.2em;
         font-weight: 600;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
-    input {
+    .input-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .input-group input {
         width: 100%;
-        padding: 12px 15px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 10px;
+        padding: 15px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         font-size: 1em;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
     }
 
-    input:focus {
+    .input-group input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .input-group input:focus {
         outline: none;
-        border-color: #5a67d8;
-        box-shadow: 0 0 8px rgba(90,103,216,0.3);
-    }
-
-    button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 20px;
-        background: #5a67d8;
-        color: white;
-        font-weight: bold;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 1em;
-        transition: all 0.3s ease;
-    }
-
-    button:hover {
-        background: #4c51bf;
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .login-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s;
+    }
+
+    .login-btn:hover::before {
+        left: 100%;
+    }
+
+    .login-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
     }
 
     .error {
-        color: #e53e3e;
+        color: #ff6b6b;
         margin-top: 15px;
         font-weight: 500;
+        padding: 10px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 107, 107, 0.3);
     }
 
     .register-link {
-        display: block;
-        margin-top: 20px;
-        font-size: 0.9em;
-        color: #5a67d8;
+        display: inline-block;
+        margin-top: 25px;
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
-        transition: color 0.3s ease;
+        font-size: 0.95em;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 8px;
     }
 
     .register-link:hover {
-        color: #4c51bf;
-        text-decoration: underline;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width: 400px) {
-        .login-box {
+    /* Responsive */
+    @media(max-width: 480px) {
+        .login-container {
             width: 90%;
-            padding: 30px 20px;
+            padding: 40px 30px;
+        }
+        
+        .login-container h2 {
+            font-size: 1.8em;
         }
     }
 </style>
 
 </head>
 <body>
-    <div class="login-box">
-        <h2>Login</h2>
+    <div class="login-container">
+        <h2>🔐 Login to FindKart</h2>
         <form method="post" action="login.jsp">
-            <input type="text" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <div class="input-group">
+                <input type="text" name="email" placeholder="📧 Email Address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="🔒 Password" required>
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
         </form>
-        <a href="register.jsp" class="register-link">New user? Register here</a>
+        <a href="register.jsp" class="register-link">🆕 New user? Create Account</a>
 
         <%
             String email = request.getParameter("email");
